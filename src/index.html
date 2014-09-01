@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Design Patterns</title>
-<meta name="description" content="Presentation of two design patterns by the gang of 4">
+<meta name="description" content="">
 <meta name="author" content="Stephanie Feddern">
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -26,10 +26,8 @@ document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.se
 <!-- Any section element inside of this container is displayed as a slide -->
 <div class="slides">
 <section>
-<img src="img/evolution.png"/>
-<p>
-<p>In general. Twice in detail. References.</p>
-</p>
+<img src="img/hex_lock_pic.jng"/>
+<p>A brief introduction to hacker conventions</p>
 </section>
 <section>
 <h2>Meet the referee</h2>
@@ -37,232 +35,49 @@ document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.se
 </section>
 <section>
 <h2>Agenda</h2>
-<div class="square3 red">
-<h1>In general</h1>
+<div class="box red 2">
+<p>6 conventions</p>
 <ol>
-<li>What are design patterns?</li>
-<li>3 basic kinds</li>
-<li>23 design patterns</li>
-<li>Why should we use them?</li>
+  <li>What?</li>
+  <li>Where?</li>
+  <li>When?</li>
 </ol>
 </div>
-<div class="square3 green">
-<h1>Twice in detail</h1>
-<ol>
-<li>Singleton</li>
-<li>Factory Method</li>
-</ol>
-<br/>
-<br/>
-<br/>
-</div>
-<div class="square3 blue">
-<h1>References</h1>
-<ul>
-<li>articles</li>
-<li>books</li>
-<li>&hellip;</li>
-</ul>
-<br/>
-<br/>
+<div class="blue box 1">
+<p>Reference</p>
 </div>
 </section>
 <section>
 <section>
-<h1>In general</h1>
+  <h2>Convention 1</h2>
 </section>
 <section>
-<h2>What are design patterns?</h2>
+  <h2>Convention 2</h2>
 </section>
 <section>
-<h2>3 basic kinds</h2>
+  <h2>Convention 3</h2>
 </section>
 <section>
-<img src="img/behaviors-that-pass-on.jpg" alt="behavioral design patterns"/>
-<p class="fragment roll-in">behavioral</p>
+  <h2>Convention 4</h2>
 </section>
 <section>
-<img src="img/weihnachtsmann&amp;co.kg_fabrik_klein.png" alt="creational design patterns"/>
-<p class="fragment roll-in">creational</p>
+  <h2>Convention 5</h2>
 </section>
 <section>
-<img src="img/structural.jpg" alt="structural design patterns"/>
-<p class="fragment roll-in">structural</p>
-</section>
-<section>
-<img src="img/23-patterns-gang-of-4.gif" alt="23 design patterns"/>
-</section>
-<section>
-<h2>Why should we use them?</h2>
-<p class="fragment roll-in"><img src="img/icon-proven.png"/></p>
-</section>
-<section>
-<h2>But...</h2>
-<p class="fragment roll-in"><img src="img/caution_screen.gif"/></p>
-</section>
-<section>
-<h2>Any questions?</h2>
+  <h2>Convention 6</h2>
 </section>
 </section>
 <section>
-<section>
-<h1>Twice in detail</h1>
-</section>
-<section>
-<h2>Singleton</h2>
-<ul>
-<li>exactly 1 instance</li>
-<li>global access point</li>
-<li>just-in-time initialization</li>
-<ul>
-</section>
-<section>
-<img src="img/Singleton_UML_class_diagram.svg.png" alt="UML class diagram: Singleton"/>
-</section>
-<section>
-<h3>Implementation</h3>
-<pre><code data-trim contenteditable>
-public class Singleton {
-private static Singleton _instance = null;
-private Singleton(){}
-public static Singleton getInstance(){
-if(_instance == null){
-_instance = new Singleton();
-}
-return _instance;
-}
-}
-</code></pre>
-</section>
-<section>
-<h3>Subclassing variations</h3>
-<ol>
-<li>Instantiation in subclasses</li>
-<li>Registry</li>
-</ol>
-</section>
-<section>
-<h4>Outsource instantiation</h4>
-<pre><code data-trim contenteditable>
-public class Singleton {
-private static Singleton _instance;
-private Singleton(){}
-public static Singleton getInstance(String classname) throws IllegalArgumentException {
-if(singletonName.equals("logger")) {
-_instance = Logger.getInstance();
-} else if(singletonName.equals("debugger")) {
-_instance = Debugger.getInstance();
-} else if(singletonName.equals("singleton")) {
-_instance = new Singleton();
-} else {
-throw new IllegalArgumentException("Illegal classname");
-}
-return _instance;
-}
-}
-</code></pre>
-</section>
-<section>
-<h4>Registry</h4>
-<pre><code data-trim contenteditable>
-public class Singleton {
-private static Map&lt;String,Singleton&gt; map = new HashMap&lt;String,Singleton&gt;();
-private Singleton() {}
-public static Singleton getInstance(String classname) throws IllegalArgumentException {
-if(classname == null) {
-throw new IllegalArgumentException("Illegal classname");
-}
-Singleton singleton = (Singleton)map.get(classname);
-if(singleton != null) {
-return singleton;
-}
-if(classname.equals("SingeltonSubclassOne")) {
-singleton = new SingletonSubclassOne();
-} else if(classname.equals("SingeltonSubclassTwo")) {
-singleton = new SingletonSubclassTwo();
-} else if(classname.equals("Singelton")) {
-singleton = new Singleton();
-} else {
-throw new IllegalArgumentException("Illegal classname");
-}
-map.put(classname, singleton);
-return singleton;
-}
-}
-</code></pre>
-</section>
-<section>
-<h2>Any questions?</h2>
-</section>
-<section>
-<h2>Factory Method</h2>
-<ol>
-<li>"Classic"</li>
-<li>"Popular"</li>
-</ol>
-</section>
-<section>
-<h2>"Classic" definition</h2>
-<p>outsource instantiation</p>
-</section>
-<section>
-<img src="img/factory_method_uml.png"/>
-</section>
-<section>
-<h3>Implementation variations</h3>
-<ul>
-<li class="fragment roll-in">abstract vs. concrete creator class</li>
-<li class="fragment roll-in">parameterized factory method</li>
-</ul>
-</section>
-<section>
-<h3>Popular definition</h3>
-<p>static methods</p>
-</section>
-<section>
-<h4>Implementation of popular definition</h4>
-<pre><code data-trim contenteditable>
-public class Color {
-public static Color make_RGB_color(int red, int green, int blue) {
-// do whatever you need to do
-}
-public static Color make_HSB_color(float hue, float saturation, float brightness) {
-// do whatever you need to do
-}
-public static Color make_HEX_color(String hexCode) {
-// do whatever you need to do
-}
-}
-</code></pre>
-</section>
-<section>
-<h4>Implementation variations</h4>
-<p>Caching</p>
-</section>
-<section>
-<h2>Any questions?</h2>
-</section>
-</section>
-<section>
-<section>
-<h1>References</h1>
-</section>
-<section>
-<img src="img/book_cover_DesignPatterns_Go4.png" alt="title: Design Patterns | subtitle: Elements of Reusable Object-Oriented Software | authors: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides"/>
-</section>
-<section>
-<img src="img/effective-java.jpg" alt="title: Effective Java | author: Joshua Bloch"/>
-</section>
-<section>
-<img src="img/sourcemaking_logo.png" alt="Sourcemaking"/>
-<p>
-<a href="http://sourcemaking.com/design_patterns/singleton">Singleton</a><br/>
-<a href="http://sourcemaking.com/design_patterns/factory_method">Factory Method</a>
-</p>
-</section>
-<section>
-<a href="http://blog.codinghorror.com/head-first-design-patterns/"><img src="img/logo-coding-horror.jpg" alt="Coding Horror"/></a>
-</section>
+  <h2>Reference</h2>
+  <ul>
+    <li><a href="http://en.wikipedia.org/wiki/Computer_security_conference#List_of_hacker_conferences">List of hacker conventions on Wikipedia</a></li>
+    <li><a href="#">Official Website of convention 1</a></li>
+    <li><a href="#">Official Website of convention 2</a></li>
+    <li><a href="#">Official Website of convention 3</a></li>
+    <li><a href="#">Official Website of convention 4</a></li>
+    <li><a href="#">Official Website of convention 5</a></li>
+    <li><a href="#">Official Website of convention 6</a></li>
+  </ul>
 </section>
 </div>
 </div>
